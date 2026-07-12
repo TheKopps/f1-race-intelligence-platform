@@ -1,0 +1,28 @@
+@'
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# FastF1 cache
+data/cache/
+
+# Generated data
+data/processed/
+data/exports/
+
+# Generated reports
+reports/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+'@ | Set-Content -Encoding UTF8 .gitignore

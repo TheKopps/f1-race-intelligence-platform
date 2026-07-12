@@ -1,0 +1,30 @@
+@'
+project:
+  name: F1 Race Intelligence Platform
+  version: 0.1.0
+
+llm:
+  provider: openai
+  model_env_var: OPENAI_MODEL
+
+fastf1:
+  cache_path: data/cache
+  default_session_type: R
+
+paths:
+  processed_data: data/processed
+  exports: data/exports
+  reports: reports
+  figures: reports/figures
+
+outputs:
+  question_context: data/exports/question_context.json
+  race_results: data/exports/race_results.csv
+  driver_summary: data/exports/driver_summary.csv
+  tyre_strategy: data/exports/tyre_strategy.csv
+  race_report: reports/race_report.md
+  pipeline_log: reports/pipeline.log
+
+pipeline:
+  stop_on_error: true
+'@ | Set-Content -Encoding UTF8 config.yaml
