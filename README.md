@@ -1,4 +1,4 @@
-@'
+
 # F1 Race Intelligence Platform
 
 Question-driven Formula 1 analytics application using FastF1, LLMs and a reusable Python analytics framework.

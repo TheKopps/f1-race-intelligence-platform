@@ -1,4 +1,4 @@
-@'
+
 pandas
 numpy
 matplotlib
@@ -10,4 +10,3 @@ pydantic
 openpyxl
 pyyaml
 analytics-framework @ git+https://github.com/TheKopps/analytics-framework.git@v0.1.0
-'@ | Set-Content -Encoding UTF8 requirements.txt

@@ -1,4 +1,3 @@
-@'
 [tool.ruff]
 line-length = 88
 target-version = "py310"
@@ -26,4 +25,3 @@ ignore = []
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
-'@ | Set-Content -Encoding UTF8 pyproject.toml
