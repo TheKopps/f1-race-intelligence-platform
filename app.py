@@ -12,6 +12,7 @@ from src.domain.race_insights import GenerateWinnerExplanationStep
 from src.domain.race_pace import ComputeDriverPaceSummaryStep
 from src.domain.race_results import ComputeRaceResultsStep
 from src.domain.tyre_strategy import ComputeTyreStrategyStep
+from src.llm.answer_generator import GenerateF1AnswerStep
 from src.llm.question_parser import parse_f1_question
 from src.router.analysis_router import route_analysis_request
 from src.visualization.race_plots import (
@@ -62,6 +63,7 @@ def build_explain_winner_pipeline(
     pipeline.add_step(ComputeDriverPaceSummaryStep())
     pipeline.add_step(ComputeTyreStrategyStep())
     pipeline.add_step(GenerateWinnerExplanationStep())
+    pipeline.add_step(GenerateF1AnswerStep())
 
     pipeline.add_step(
         CSVExportStep(
@@ -138,6 +140,7 @@ def build_explain_winner_pipeline(
                 "driver_summary",
                 "tyre_strategy",
                 "race_insights",
+                "final_answer",
             ],
         )
     )
@@ -176,12 +179,18 @@ def main() -> None:
         grand_prix=route.grand_prix,
         session_type=route.session_type,
     )
+    pipeline.context["original_question"] = parsed_question.original_question
+    pipeline.context["parsed_question"] = parsed_question.model_dump()
+    pipeline.context["analysis_route"] = route.model_dump()
 
     result = pipeline.run()
 
     print("\nAnswer:")
-    for insight in result["race_insights"]:
-        print(f"- {insight}")
+    print(result["final_answer"]["answer"])
+
+    print("\nKey reasons:")
+    for reason in result["final_answer"]["key_reasons"]:
+        print(f"- {reason}")
 
     print("\nGenerated outputs:")
     print(f"- Race report: {result['markdown_report_path']}")
