@@ -1,4 +1,4 @@
-project:
+﻿project:
   name: F1 Race Intelligence Platform
   version: 0.1.0
 
@@ -18,11 +18,14 @@ paths:
 
 outputs:
   question_context: data/exports/question_context.json
+  laps_dataset: data/processed/laps.csv
   race_results: data/exports/race_results.csv
   driver_summary: data/exports/driver_summary.csv
   tyre_strategy: data/exports/tyre_strategy.csv
   race_report: reports/race_report.md
   pipeline_log: reports/pipeline.log
+  average_pace_figure: reports/figures/average_pace_by_driver.png
+  winner_lap_time_figure: reports/figures/winner_lap_time_evolution.png
 
 pipeline:
   stop_on_error: true
